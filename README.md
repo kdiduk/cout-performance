@@ -8,15 +8,25 @@ CLang 21 arm64-apple-darwin25.5
 
 Time in microseconds
 
-default: [2447149, 2424436, 2410315, 2686783, 2419577, 2423601, 2431216, 2425815, 2429051, 2448260]
+| Run   | Default | no sync with stdio | no std::endl | puts() |
+|-------|---------|--------------------|--------------|--------|
+| 1.    | 2447149 | 2431388            | 437274       | 206680 |
+| 2.    | 2424436 | 2431463            | 432456       | 207813 |
+| 3.    | 2410315 | 2475041            | 436400       | 203624 |
+| 4.    | 2686783 | 2428963            | 438486       | 206264 |
+| 5.    | 2419577 | 2436221            | 438761       | 207542 |
+| 6.    | 2423601 | 2431060            | 434446       | 206263 |
+| 7.    | 2431216 | 2433978            | 433248       | 207782 |
+| 8.    | 2425815 | 2442381            | 437799       | 205182 |
+| 9.    | 2429051 | 2424418            | 440202       | 207931 |
+| 10.   | 2448260 | 2433070            | 437079       | 209172 |
+| Avg.  | 2454620 | 2436798            | 436636       | 206825 |
+| 50p   | 2427433 | 2432266            | 437079       | 207111 |
+| 90p   | 2472112 | 2445647            | 438761       | 208055 |
 
-no-sync [2431388, 2431463, 2475041, 2428963, 2436221, 2431060, 2433978, 2442381, 2424418, 2433070]
 
-no-flush: [437274, 432456, 436400, 438486, 438761, 434446, 433248, 437799, 440202, 437079, 436849]
+Conclusion:
 
-puts: [206680, 207813, 203624, 206264, 207542, 206263, 207782, 205182, 207931, 209172, 210095, 207811]
-
-Conclusion: 
-— disable sync with stdio didn't give any noticeable improvement
-— use '\n' instead of std::endl improved performance by ~5-6 times
-— using `puts()` from <stdio.h> showed ~12 times better performance
+ - disable sync with stdio didn't give any noticeable improvement
+ - use '\n' instead of std::endl improved performance by ~5-6 times
+ - using `puts()` from <stdio.h> showed ~12 times better performance
