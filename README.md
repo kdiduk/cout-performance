@@ -1,12 +1,18 @@
 # cout-performance
-A rough benchmarking of std::cout with different settings
 
+A rough benchmark of `std::cout` with different settings.
 
-Print Sheakspear sonnets 1000 times to `/dev/null`
+## Benchmark
 
-CLang 21 arm64-apple-darwin25.5
+Print Shakespeare's sonnets 1000 times to `/dev/null`.
 
-Time in microseconds
+Environment:
+
+* Apple M3
+* Clang 21
+* arm64-apple-darwin25.5
+
+Time in microseconds.
 
 | Run   | Default | no sync with stdio | no std::endl | puts() |
 |-------|---------|--------------------|--------------|--------|
@@ -25,8 +31,8 @@ Time in microseconds
 | 90p   | 2472112 | 2445647            | 438761       | 208055 |
 
 
-Conclusion:
+## Conclusions
 
- - disable sync with stdio didn't give any noticeable improvement
- - use '\n' instead of std::endl improved performance by ~5-6 times
- - using `puts()` from <stdio.h> showed ~12 times better performance
+* Disabling stdio synchronization had no measurable effect in this benchmark.
+* Using `'\n'` instead of `std::endl` improved performance by approximately 5–6×.
+* `puts()` from `<stdio.h>` was more than 2× faster than `std::cout` using `'\n'` instead of `std::endl`.
