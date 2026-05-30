@@ -6,11 +6,20 @@ A rough benchmark of `std::cout` with different settings.
 
 Print Shakespeare's sonnets 1000 times to `/dev/null`.
 
+The benchmark compares four variants:
+
+* default std::cout with std::endl
+* std::cout with std::ios_base::sync_with_stdio(false)
+* std::cout using '\n' instead of std::endl
+* puts() from the C stdio library
+
 Environment:
 
 * Apple M3
 * Clang 21
 * arm64-apple-darwin25.5
+
+## Results
 
 Time in microseconds.
 
